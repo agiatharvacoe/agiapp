@@ -1,4 +1,4 @@
-# agi_app as
+# agi_apps
 
 A new Flutter project.
 
