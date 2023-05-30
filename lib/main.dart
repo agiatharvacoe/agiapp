@@ -1,3 +1,8 @@
+// import 'package:agi_app/eng_dept.dart';
+import 'package:agi_app/components/college_tile.dart';
+import 'package:agi_app/components/drawer.dart';
+import 'package:agi_app/model/college.dart';
+import 'package:agi_app/screens/dept.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,9 +22,9 @@ class MyApp extends StatelessWidget {
       title: AppBarText,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme,
-        ),
+        // textTheme: GoogleFonts.poppinsTextTheme(
+        //   Theme.of(context).textTheme,
+        // ),
         primarySwatch: Colors.blue,
       ),
       home: const Home(),
@@ -40,34 +45,147 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      backgroundColor: backgroundColor,
+      endDrawer: Navbar(),
       appBar: AppBar(
-        title: const Text(
+        automaticallyImplyLeading: false,
+        actions: [
+          Builder(
+              builder: (context) => Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Scaffold.of(context).openEndDrawer();
+                      },
+                      child: Image.asset(
+                        "assets/images/menu.png",
+                        width: 30,
+                      ),
+                    ),
+                  )),
+        ],
+        // toolbarHeight: 60,
+        iconTheme: IconThemeData(color: black),
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
           AppBarText,
-          style: TextStyle(color: Colors.black, fontSize: 18),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                fontSize: 16,
+                color: black,
+                letterSpacing: 0.5,
+                fontWeight: FontWeight.normal),
+          ),
+          // style: TextStyle(
+          //   color: black,
+          //   letterSpacing: 0.5,
+          //   fontWeight: FontWeight.normal,
+          //   // fontFamily: 'Poppins',
+          //   fontSize: 16,
+          // ),
         ),
         backgroundColor: backgroundColor,
-        elevation: 0.0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.menu_rounded,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            scaffoldKey.currentState?.openDrawer();
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.menu_rounded,
+        //     color: Colors.black,
+        //   ),
+        //   onPressed: () {
+        //     scaffoldKey.currentState?.openDrawer();
+        //   },
+        // ),
       ),
-      drawer: Drawer(
+      drawer: const Drawer(
         backgroundColor: drawerColor,
       ),
-      body: Container(
-        color: backgroundColor,
-        child: Column(
-          children: [
-            carouselSlider(),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          color: backgroundColor,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const carouselSlider(),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      color: white,
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Important Notice",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(fontSize: 11),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                child: Text(
+                  "Colleges",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 5, left: 15, bottom: 10),
+                height: 130,
+                width: double.infinity,
+                child: ListView.builder(
+                  itemCount: clgList.length,
+                  shrinkWrap: true,
+                  // physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Colleges(
+                        path: clgList[index].path,
+                        id: clgList[index].id,
+                        onClicked: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DeptPage(
+                                name: clgList[index].name,
+                                desc: clgList[index].desc,
+                                img: clgList[index].path,
+                              ),
+                            ),
+                          );
+                        }
+                        // selectedItem(context, clgList[index].id),
+                        );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
