@@ -440,8 +440,8 @@ class FoundersMessageRoute extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(29)),
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 17.05, right: 16.15, top: 32),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 32),
                     child: Column(
                       children: [
                         Text(
@@ -453,11 +453,14 @@ class FoundersMessageRoute extends StatelessWidget {
                           )),
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Image.asset(
                               'assets/images/stamp.png',
-                              width: (screen_width - 120.26) / 2,
-                              height: (screen_height - 134) / 2,
+                              width: (screen_width / 4),
+                              // height: (screen_height - 134) / 2,
+                              height: screen_width / 4,
+                              fit: BoxFit.contain,
                             ),
                             SizedBox(width: 77.4 / 2),
                             Padding(
@@ -465,8 +468,8 @@ class FoundersMessageRoute extends StatelessWidget {
                                   const EdgeInsets.only(right: 0, bottom: 18),
                               child: Image.asset(
                                 'assets/images/sign.png',
-                                width: (screen_width - 120.26) / 2,
-                                height: (screen_height - 160) / 2,
+                                width: (screen_width / 4),
+                                height: (screen_height / 4),
                               ),
                             ),
                           ],
@@ -616,20 +619,23 @@ class PrincipalsDeskRoute extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 19),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Image.asset(
                               'assets/images/stamp.png',
-                              width: (screen_width - 120.26) / 2,
-                              height: (screen_height - 134) / 2,
+                              width: (screen_width / 4),
+                              // height: (screen_height - 134) / 2,
+                              height: screen_width / 4,
+                              fit: BoxFit.contain,
                             ),
-                            SizedBox(width: 50.4 / 2),
+                            SizedBox(width: 77.4 / 2),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 0, bottom: 18),
                               child: Image.asset(
                                 'assets/images/sign.png',
-                                width: (screen_width - 120.26) / 2,
-                                height: (screen_height - 160) / 2,
+                                width: (screen_width / 4),
+                                height: (screen_height / 4),
                               ),
                             ),
                           ],
