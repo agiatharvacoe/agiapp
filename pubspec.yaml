@@ -38,6 +38,9 @@ dependencies:
   google_fonts: ^4.0.3
   carousel_slider: ^4.2.1
   font_awesome_flutter:
+  firebase_core: ^2.13.1
+  cloud_firestore: ^4.8.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

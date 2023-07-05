@@ -1,8 +1,10 @@
 // import 'package:agi_app/eng_dept.dart';
 import 'package:agi_app/components/college_tile.dart';
 import 'package:agi_app/components/drawer.dart';
+import 'package:agi_app/firebase_options.dart';
 import 'package:agi_app/model/college.dart';
 import 'package:agi_app/screens/dept.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +12,11 @@ import 'common/colors.dart';
 import 'common/strings.dart';
 import 'components/carouselSlider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

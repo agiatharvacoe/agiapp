@@ -1,4 +1,4 @@
-package com.example.agi_app
+package com.atharva.app
 
 import io.flutter.embedding.android.FlutterActivity
 

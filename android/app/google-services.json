@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "252254702095",
+    "project_id": "atharvaagi",
+    "storage_bucket": "atharvaagi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252254702095:android:8225f75f7d63227bbdf17a",
+        "android_client_info": {
+          "package_name": "com.atharva.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252254702095-72l9e3bv3000p502kduogvp1jj4fo2ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4ECTaNpsx6hJhOWe_W1G3YfYahzicJvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252254702095-72l9e3bv3000p502kduogvp1jj4fo2ug.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "252254702095-dfuip5q9pjn5slvbetsj92pj186ju30r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.atharva.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252254702095:android:8dfc0cb1a2baa03ebdf17a",
+        "android_client_info": {
+          "package_name": "com.example.agi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252254702095-72l9e3bv3000p502kduogvp1jj4fo2ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4ECTaNpsx6hJhOWe_W1G3YfYahzicJvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252254702095-72l9e3bv3000p502kduogvp1jj4fo2ug.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "252254702095-dfuip5q9pjn5slvbetsj92pj186ju30r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.atharva.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
