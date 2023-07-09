@@ -1,3 +1,4 @@
+import 'package:agi_app/components/departmentCard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,20 +38,24 @@ import 'package:google_fonts/google_fonts.dart';
 // }
 
 // ignore: must_be_immutable
-class DeptPage extends StatefulWidget {
+class InstitutesWidget extends StatefulWidget {
   String name;
+  String urlImage;
+  String desc;
 
-  DeptPage(
-      {super.key,
-      required String this.name,
-      required String desc,
-      required String img});
+  InstitutesWidget({
+    super.key,
+    required String this.name,
+    required String this.desc,
+    // required String img,
+    required String this.urlImage,
+  });
 
   @override
-  State<DeptPage> createState() => _DeptPageState();
+  State<InstitutesWidget> createState() => _InstitutesWidgetState();
 }
 
-class _DeptPageState extends State<DeptPage> {
+class _InstitutesWidgetState extends State<InstitutesWidget> {
   @override
   Widget build(BuildContext context) {
     final screen_height = MediaQuery.of(context).size.height;
@@ -118,8 +123,8 @@ class _DeptPageState extends State<DeptPage> {
                           stops: [0, 0.9],
                         )),
                         child: Container(
-                            child: Image.asset(
-                          'assets/images/hero_image.png',
+                            child: Image.network(
+                          widget.urlImage,
                           width: screen_width,
                           height: 417,
                         )),
@@ -160,7 +165,7 @@ class _DeptPageState extends State<DeptPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Text(
-                      "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+                      widget.desc,
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 12,
@@ -176,6 +181,22 @@ class _DeptPageState extends State<DeptPage> {
                     decoration: const BoxDecoration(color: Color(0xff1B1E23)),
                   ),
                 ),
+                Container(
+                  color: Color(0xff1B1E23),
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Departments',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                  ),
+                ),
+                DepartmentCard(),
                 Container(
                   color: Color(0xff1B1E23),
                   child: Row(

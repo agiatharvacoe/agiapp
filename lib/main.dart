@@ -1,15 +1,17 @@
 // import 'package:agi_app/eng_dept.dart';
 import 'package:agi_app/components/college_tile.dart';
 import 'package:agi_app/components/drawer.dart';
+import 'package:agi_app/components/foundersDesk.dart';
 import 'package:agi_app/firebase_options.dart';
 import 'package:agi_app/model/college.dart';
-import 'package:agi_app/screens/dept.dart';
+import 'package:agi_app/screens/institutes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'common/colors.dart';
 import 'common/strings.dart';
+import 'components/card.dart';
 import 'components/carouselSlider.dart';
 
 void main() async {
@@ -51,7 +53,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: secondBackgroundColor,
       endDrawer: Navbar(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -79,7 +81,7 @@ class _HomeState extends State<Home> {
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
                 fontSize: 16,
-                color: black,
+                color: white,
                 letterSpacing: 0.5,
                 fontWeight: FontWeight.normal),
           ),
@@ -91,7 +93,7 @@ class _HomeState extends State<Home> {
           //   fontSize: 16,
           // ),
         ),
-        backgroundColor: backgroundColor,
+        backgroundColor: secondBackgroundColor,
         // leading: IconButton(
         //   icon: Icon(
         //     Icons.menu_rounded,
@@ -107,7 +109,7 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: backgroundColor,
+          color: secondBackgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -151,45 +153,51 @@ class _HomeState extends State<Home> {
                 height: 10,
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
                 child: Text(
                   "Colleges",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(fontSize: 20), color: white),
+                  // style: TextStyle(
+                  //     fontSize: 20, fontWeight: FontWeight.w800, color: white),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 5, left: 15, bottom: 10),
-                height: 130,
-                width: double.infinity,
-                child: ListView.builder(
-                  itemCount: clgList.length,
-                  shrinkWrap: true,
-                  // physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Colleges(
-                        path: clgList[index].path,
-                        id: clgList[index].id,
-                        onClicked: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DeptPage(
-                                name: clgList[index].name,
-                                desc: clgList[index].desc,
-                                img: clgList[index].path,
-                              ),
-                            ),
-                          );
-                        }
-                        // selectedItem(context, clgList[index].id),
-                        );
-                  },
-                ),
-              ),
+              // Stack(
+              //   children: [
+              //     Container(
+              //       margin: EdgeInsets.only(top: 5, left: 15, bottom: 10),
+              //       height: 150,
+              //       width: double.infinity,
+              //       child: ListView.builder(
+              //         itemCount: clgList.length,
+              //         shrinkWrap: true,
+              //         // physics: ClampingScrollPhysics(),
+              //         scrollDirection: Axis.horizontal,
+              //         itemBuilder: (context, index) {
+              //           return Colleges(
+              //               path: clgList[index].path,
+              //               id: clgList[index].id,
+              //               onClicked: () {
+              //                 Navigator.push(
+              //                   context,
+              //                   MaterialPageRoute(
+              //                     builder: (context) => DeptPage(
+              //                       name: clgList[index].name,
+              //                       desc: clgList[index].desc,
+              //                       img: clgList[index].path,
+              //                     ),
+              //                   ),
+              //                 );
+              //               }
+              //               // selectedItem(context, clgList[index].id),
+              //               );
+              //         },
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              CollegeCard(),
+              FoundersDesk(),
             ],
           ),
         ),

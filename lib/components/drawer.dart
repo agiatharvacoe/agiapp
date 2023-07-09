@@ -38,10 +38,6 @@ class Navbar extends StatelessWidget {
             ],
           ),
           BuildMenuItem(
-              title: "Virtual classroom",
-              onClicked: () => selectedItem(context, 0),
-              path: "assets/images/virtualClassrooms.png"),
-          BuildMenuItem(
               title: "Notice Board",
               onClicked: () => selectedItem(context, 1),
               path: "assets/images/noticeBoard.png"),
@@ -55,6 +51,10 @@ class Navbar extends StatelessWidget {
               path: "assets/images/payment.png"),
           BuildMenuItem(
               title: "Student Result",
+              onClicked: () => selectedItem(context, 4),
+              path: "assets/images/result.png"),
+          BuildMenuItem(
+              title: "Settings",
               onClicked: () => selectedItem(context, 4),
               path: "assets/images/result.png"),
         ],
