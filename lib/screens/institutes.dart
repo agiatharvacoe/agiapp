@@ -1,10 +1,7 @@
 import 'package:agi_app/components/departmentCard.dart';
-import 'package:agi_app/components/instituteDrawer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:agi_app/components/notices.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../common/colors.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -46,16 +43,13 @@ class InstitutesWidget extends StatefulWidget {
   String name;
   String urlImage;
   String desc;
-  String feesUrl;
-  String admissionUrl;
 
   InstitutesWidget({
     super.key,
     required String this.name,
     required String this.desc,
-    required String this.admissionUrl,
+    // required String img,
     required String this.urlImage,
-    required String this.feesUrl,
   });
 
   @override
@@ -71,92 +65,50 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
     print(screen_width);
 
     return Scaffold(
-      backgroundColor: secondBackgroundColor,
-      drawerEnableOpenDragGesture: false,
-      endDrawer: InstituteDrawerWidget(
-          feesUrl: widget.feesUrl, admissionUrl: widget.admissionUrl),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: ImageIcon(AssetImage('assets/images/white_arr.png'),
-              color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: [
-          Builder(
-            builder: (context) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-                child: Image.asset(
-                  "assets/images/white_menu.png",
-                  width: 30,
-                ),
-              ),
-            ),
-          ),
-        ],
-        // toolbarHeight: 60,
-        iconTheme: IconThemeData(color: black),
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          widget.name,
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                fontSize: 14,
-                color: white,
-                letterSpacing: 0.5,
-                fontWeight: FontWeight.normal),
-          ),
-        ),
-        backgroundColor: secondBackgroundColor,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             color: Color(0xff1B1E23),
             child: Column(
               children: [
-                // Row(
-                //   children: [
-                //     Padding(
-                //       padding: const EdgeInsets.all(15),
-                //       child: IconButton(
-                //         iconSize: 26,
-                //         icon: ImageIcon(
-                //             AssetImage('assets/images/white_arr.png'),
-                //             color: Colors.white),
-                //         onPressed: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //     ),
-                //     Expanded(
-                //       child: Center(
-                //         child: Text(
-                //           widget.name,
-                //           textAlign: TextAlign.center,
-                //           style: GoogleFonts.poppins(
-                //               textStyle: TextStyle(
-                //             fontSize: 15,
-                //             color: Colors.white,
-                //           )),
-                //         ),
-                //       ),
-                //     ),
-                //     Padding(
-                //       padding: const EdgeInsets.only(right: 20),
-                //       child: IconButton(
-                //         icon: ImageIcon(
-                //             AssetImage('assets/images/white_menu.png'),
-                //             color: Colors.white),
-                //         onPressed: () {},
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: IconButton(
+                        iconSize: 26,
+                        icon: ImageIcon(
+                            AssetImage('assets/images/white_arr.png'),
+                            color: Colors.white),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          widget.name,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                          )),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: IconButton(
+                        icon: ImageIcon(
+                            AssetImage('assets/images/white_menu.png'),
+                            color: Colors.white),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   child: Column(
                     children: [
@@ -172,8 +124,8 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                           stops: [0, 0.9],
                         )),
                         child: Container(
-                            child: CachedNetworkImage(
-                          imageUrl: widget.urlImage,
+                            child: Image.network(
+                          widget.urlImage,
                           width: screen_width,
                           height: 417,
                         )),
@@ -222,6 +174,10 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                               fontWeight: FontWeight.w400)),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 100,
+                  child: Notices(),
                 ),
                 SizedBox(
                   height: 20,

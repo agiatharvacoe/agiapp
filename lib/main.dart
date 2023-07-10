@@ -2,7 +2,6 @@
 import 'package:agi_app/components/college_tile.dart';
 import 'package:agi_app/components/drawer.dart';
 import 'package:agi_app/components/foundersDesk.dart';
-import 'package:agi_app/components/homeNotice.dart';
 import 'package:agi_app/firebase_options.dart';
 import 'package:agi_app/model/college.dart';
 import 'package:agi_app/screens/institutes.dart';
@@ -55,7 +54,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondBackgroundColor,
-      drawerEnableOpenDragGesture: false,
       endDrawer: Navbar(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -68,7 +66,7 @@ class _HomeState extends State<Home> {
                         Scaffold.of(context).openEndDrawer();
                       },
                       child: Image.asset(
-                        "assets/images/white_menu.png",
+                        "assets/images/menu.png",
                         width: 30,
                       ),
                     ),
@@ -119,41 +117,38 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 10,
               ),
-              // Container(
-              //   margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              //   child: SizedBox(
-              //     width: double.infinity,
-              //     height: 80,
-              //     child: Expanded(
-              //       child: ClipRRect(
-              //         borderRadius: BorderRadius.circular(12),
-              //         child: Container(
-              //           color: white,
-              //           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              //           child: Column(
-              //             mainAxisAlignment: MainAxisAlignment.center,
-              //             crossAxisAlignment: CrossAxisAlignment.start,
-              //             children: [
-              //               Text(
-              //                 "Important Notice",
-              //                 style: GoogleFonts.poppins(
-              //                   textStyle: TextStyle(fontSize: 16),
-              //                 ),
-              //               ),
-              //               Text(
-              //                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-              //                 style: GoogleFonts.poppins(
-              //                   textStyle: TextStyle(fontSize: 11),
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              HomeNoticeWidget(),
+              Container(
+                margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 80,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      color: white,
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Important Notice",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(fontSize: 11),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),

@@ -1,4 +1,3 @@
-import 'package:agi_app/screens/departments.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,16 +6,18 @@ import 'college_tile.dart';
 class DepartmentCardModel {
   final String name;
   final String image;
-  final String department;
-  final String hodImageUrl;
-  final String hodName;
+  final String documentId;
+  // final String logo;
+  // final String desc;
+  // final int id;I
 
   const DepartmentCardModel({
     required this.name,
     required this.image,
-    required this.department,
-    required this.hodImageUrl,
-    required this.hodName,
+    required this.documentId,
+    // required this.logo,
+    // required this.desc,
+    // required this.id,
   });
 }
 
@@ -50,16 +51,14 @@ class _DepartmentCardState extends State<DepartmentCard> {
           (item) => DepartmentCardModel(
             name: item["name"],
             image: item["image"],
-            department: item["department"],
-            hodImageUrl: item["hodImageUrl"],
-            hodName: item["hodName"],
+            documentId: item["department"],
             // id: int.parse(item["subtitle"]),
             // urlImage: item["urlImage"],
             // logo: item["logo"],
           ),
         )
         .toList();
-    print("Lenghth years");
+    print("Lenghth");
     print(_list.length);
     setState(() {
       isLoaded = true;
@@ -84,15 +83,16 @@ class _DepartmentCardState extends State<DepartmentCard> {
                   path: departments[index].image,
                   id: index,
                   onClicked: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DepartmentScreen(
-                            department: departments[index].name,
-                            hodImageUrl: departments[index].hodImageUrl,
-                            hodName: departments[index].hodName),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => DeptPage(
+                    //       name: clgList[index].name,
+                    //       desc: clgList[index].desc,
+                    //       img: clgList[index].path,
+                    //     ),
+                    //   ),
+                    // );
                   }
                   // selectedItem(context, clgList[index].id),
                   );
