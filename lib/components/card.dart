@@ -1,4 +1,5 @@
 import 'package:agi_app/common/strings.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ class CardItem {
   final String subtitle;
   final String logo;
   final String desc;
+  final String feesUrl;
+  final String admissionUrl;
   // final int id;I
 
   const CardItem({
@@ -19,7 +22,8 @@ class CardItem {
     required this.subtitle,
     required this.logo,
     required this.desc,
-    // required this.id,
+    required this.feesUrl,
+    required this.admissionUrl,
   });
 }
 
@@ -54,14 +58,15 @@ class _CollegeCardState extends State<CollegeCard> {
             subtitle: item["subtitle"],
             title: item["title"],
             desc: item["desc"],
+            feesUrl: item["feesUrl"],
             // id: int.parse(item["subtitle"]),
             urlImage: item["urlImage"],
             logo: item["logo"],
+            admissionUrl: item["admissionUrl"],
           ),
         )
         .toList();
-    print("Lenghth");
-    print(_list.length);
+    // print(_list.length);
     setState(() {
       isLoaded = true;
       carouselList = _list;
@@ -170,6 +175,8 @@ class _CollegeCardState extends State<CollegeCard> {
                 name: carouselList[i].subtitle,
                 desc: carouselList[i].desc,
                 urlImage: carouselList[i].urlImage,
+                feesUrl: carouselList[i].feesUrl,
+                admissionUrl: carouselList[i].admissionUrl,
               ),
             ),
           );
@@ -185,8 +192,8 @@ class _CollegeCardState extends State<CollegeCard> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   color: Colors.black),
-              child: Image.network(
-                item.urlImage,
+              child: CachedNetworkImage(
+                imageUrl: item.urlImage,
                 fit: BoxFit.cover,
               ),
             ),
@@ -226,7 +233,7 @@ class _CollegeCardState extends State<CollegeCard> {
                   color: Colors.white,
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: NetworkImage(
+                      image: CachedNetworkImageProvider(
                         item.logo,
                       ),
                       fit: BoxFit.contain),
