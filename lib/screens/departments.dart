@@ -150,8 +150,8 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
             SizedBox(
               height: 100,
               child: Container(
-                padding: EdgeInsets.only(
-                  left: 15,
+                margin: EdgeInsets.only(
+                  left: 25,
                 ),
                 // height: 150,
                 width: double.infinity,
