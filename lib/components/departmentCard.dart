@@ -68,38 +68,42 @@ class _DepartmentCardState extends State<DepartmentCard> {
   }
 
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 5, left: 15, bottom: 10),
-          height: 150,
-          width: double.infinity,
-          child: ListView.builder(
-            itemCount: departments.length,
-            shrinkWrap: true,
-            // physics: ClampingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Colleges(
-                  path: departments[index].image,
-                  id: index,
-                  onClicked: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DepartmentScreen(
-                            department: departments[index].name,
-                            hodImageUrl: departments[index].hodImageUrl,
-                            hodName: departments[index].hodName),
-                      ),
+    return isLoaded
+        ? Container(
+            margin: EdgeInsets.only(top: 5, left: 15, bottom: 10),
+            height: 150,
+            width: double.infinity,
+            child: ListView.builder(
+              itemCount: departments.length,
+              shrinkWrap: true,
+              // physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Colleges(
+                    path: departments[index].image,
+                    id: index,
+                    onClicked: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DepartmentScreen(
+                              department: departments[index].name,
+                              hodImageUrl: departments[index].hodImageUrl,
+                              hodName: departments[index].hodName),
+                        ),
+                      );
+                    }
+                    // selectedItem(context, clgList[index].id),
                     );
-                  }
-                  // selectedItem(context, clgList[index].id),
-                  );
-            },
-          ),
-        ),
-      ],
-    );
+              },
+            ),
+          )
+        : Container(
+            margin: EdgeInsets.all(20),
+            child: SizedBox(
+              width: double.infinity,
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          );
   }
 }

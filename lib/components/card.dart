@@ -13,17 +13,23 @@ class CardItem {
   final String logo;
   final String desc;
   final String feesUrl;
+  bool hasDepartments;
   final String admissionUrl;
+  final String vision;
+  final String mission;
   // final int id;I
 
-  const CardItem({
+  CardItem({
     required this.urlImage,
     required this.title,
     required this.subtitle,
     required this.logo,
     required this.desc,
     required this.feesUrl,
+    required this.hasDepartments,
     required this.admissionUrl,
+    required this.vision,
+    required this.mission,
   });
 }
 
@@ -60,9 +66,12 @@ class _CollegeCardState extends State<CollegeCard> {
             desc: item["desc"],
             feesUrl: item["feesUrl"],
             // id: int.parse(item["subtitle"]),
+            hasDepartments: item["hasDepartments"] == "true" ? true : false,
             urlImage: item["urlImage"],
             logo: item["logo"],
             admissionUrl: item["admissionUrl"],
+            vision: item["vision"],
+            mission: item["mission"],
           ),
         )
         .toList();
@@ -147,19 +156,27 @@ class _CollegeCardState extends State<CollegeCard> {
   // ];
 
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-      child: Container(
-        height: 225,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: carouselList.length,
-          separatorBuilder: (context, _) => SizedBox(width: 12.0),
-          itemBuilder: (context, index) =>
-              buildCard(item: carouselList[index], i: index),
-        ),
-      ),
-    );
+    return isLoaded
+        ? Padding(
+            padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+            child: Container(
+              height: 225,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: carouselList.length,
+                separatorBuilder: (context, _) => SizedBox(width: 12.0),
+                itemBuilder: (context, index) =>
+                    buildCard(item: carouselList[index], i: index),
+              ),
+            ),
+          )
+        : Container(
+            margin: EdgeInsets.all(20),
+            child: SizedBox(
+              width: double.infinity,
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          );
   }
 
   Widget buildCard({
@@ -177,6 +194,9 @@ class _CollegeCardState extends State<CollegeCard> {
                 urlImage: carouselList[i].urlImage,
                 feesUrl: carouselList[i].feesUrl,
                 admissionUrl: carouselList[i].admissionUrl,
+                hasDepartments: carouselList[i].hasDepartments,
+                vision: carouselList[i].vision,
+                mission: carouselList[i].mission,
               ),
             ),
           );

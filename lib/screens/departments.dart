@@ -1,4 +1,5 @@
 import 'package:agi_app/components/departmentDrawer.dart';
+import 'package:agi_app/components/notices_widget.dart';
 import 'package:agi_app/components/year_button.dart';
 import 'package:agi_app/model/yearModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -90,49 +91,67 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         iconTheme: IconThemeData(color: black),
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          widget.department,
-          style: GoogleFonts.poppins(
-            textStyle: TextStyle(
-                fontSize: 16,
-                color: white,
-                letterSpacing: 0.5,
-                fontWeight: FontWeight.normal),
-          ),
-        ),
+        // title: Text(
+        //   widget.department,
+        //   style: GoogleFonts.poppins(
+        //     textStyle: TextStyle(
+        //         fontSize: 16,
+        //         color: white,
+        //         letterSpacing: 0.5,
+        //         fontWeight: FontWeight.normal),
+        //   ),
+        // ),
         backgroundColor: secondBackgroundColor,
       ),
-      body: Center(
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
-            // Container(
-            //   margin: const EdgeInsets.only(top: 50),
-            //   child: Image.asset(
-            //     'assets/images/department_it.png',
-            //   ),
-            // ),
             Container(
-              width: 300,
-              height: 50,
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: const Text(
-                "Information and Technology",
+              // margin: const EdgeInsets.only(top: 50),
+              child: Image.network(
+                'https://atharvacoe.ac.in/wp-content/uploads/slider_innoivation.jpg',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: double.infinity,
+              child: Text(
+                widget.department,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Container(
-              width: 300,
+              width: double.infinity,
               child: const Text(
-                "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+                "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Etiam eu turpis molestie, dictum est sit amet",
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                     color: Color.fromARGB(255, 123, 124, 126), fontSize: 17),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            NoticesWidget(),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Column(
                 children: [
-                  blockTitle("Select your Year"),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Top Recruiters',
+                      style: GoogleFonts.poppins(
+                          textStyle:
+                              TextStyle(fontSize: 16, color: Colors.white)),
+                    ),
+                  ),
                   // Padding(
                   //   padding: const EdgeInsets.fromLTRB(30, 20, 10, 10),
                   //   // child: Row(
@@ -150,9 +169,9 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
             SizedBox(
               height: 100,
               child: Container(
-                margin: EdgeInsets.only(
-                  left: 25,
-                ),
+                // margin: EdgeInsets.only(
+                //   left: 5,
+                // ),
                 // height: 150,
                 width: double.infinity,
                 child: ListView.builder(
@@ -179,64 +198,68 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Column(
-                children: [
-                  blockTitle("HOD DESK"),
-                  HodCard(
-                    imagePath: widget.hodImageUrl,
-                    description:
-                        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                    title: widget.hodName,
-                  )
-                ],
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "HOD Desk",
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(fontSize: 16, color: Colors.white)),
               ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            HodCard(
+              imagePath: widget.hodImageUrl,
+              description:
+                  "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+              title: widget.hodName,
             ),
           ],
         ),
       ),
     );
   }
-
-  Widget blockTitle(String title) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-        child: Text(
-          title,
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-      ),
-    );
-  }
-
-  Widget yearSelect(String year) {
-    return Container(
-      margin: EdgeInsets.only(right: 20),
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.red,
-            width: 1,
-          )),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          elevation: MaterialStateProperty.all(0),
-          backgroundColor: MaterialStateProperty.all(Colors.transparent),
-        ),
-        onPressed: () {},
-        child: Text(
-          year,
-          style: const TextStyle(
-            color: Color.fromARGB(255, 252, 87, 59),
-            fontSize: 15,
-          ),
-        ),
-      ),
-    );
-  }
 }
+
+//   Widget blockTitle(String title) {
+//     return Align(
+//       alignment: Alignment.centerLeft,
+//       child: Padding(
+//         padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+//         child: Text(
+//           title,
+//           style: TextStyle(color: Colors.white, fontSize: 20),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget yearSelect(String year) {
+//     return Container(
+//       margin: EdgeInsets.only(right: 20),
+//       width: 60,
+//       height: 60,
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(10),
+//           border: Border.all(
+//             color: Colors.red,
+//             width: 1,
+//           )),
+//       child: ElevatedButton(
+//         style: ButtonStyle(
+//           elevation: MaterialStateProperty.all(0),
+//           backgroundColor: MaterialStateProperty.all(Colors.transparent),
+//         ),
+//         onPressed: () {},
+//         child: Text(
+//           year,
+//           style: const TextStyle(
+//             color: orange,
+//             fontSize: 15,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

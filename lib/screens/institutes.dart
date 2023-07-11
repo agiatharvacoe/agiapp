@@ -1,7 +1,11 @@
 import 'package:agi_app/components/departmentCard.dart';
 import 'package:agi_app/components/instituteDrawer.dart';
+import 'package:agi_app/components/notices_widget.dart';
+import 'package:agi_app/components/principalDesk.dart';
+import 'package:agi_app/components/vision_mission.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../common/colors.dart';
@@ -48,6 +52,9 @@ class InstitutesWidget extends StatefulWidget {
   String desc;
   String feesUrl;
   String admissionUrl;
+  String vision;
+  String mission;
+  bool hasDepartments;
 
   InstitutesWidget({
     super.key,
@@ -56,6 +63,9 @@ class InstitutesWidget extends StatefulWidget {
     required String this.admissionUrl,
     required String this.urlImage,
     required String this.feesUrl,
+    required bool this.hasDepartments,
+    required String this.vision,
+    required String this.mission,
   });
 
   @override
@@ -67,6 +77,7 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
   Widget build(BuildContext context) {
     final screen_height = MediaQuery.of(context).size.height;
     final screen_width = MediaQuery.of(context).size.width;
+    // bool ace = false;
     print(screen_height);
     print(screen_width);
 
@@ -230,80 +241,12 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                     decoration: const BoxDecoration(color: Color(0xff1B1E23)),
                   ),
                 ),
+
                 Container(
-                  color: Color(0xff1B1E23),
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Departments',
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: NoticesWidget(),
                 ),
-                DepartmentCard(),
-                Container(
-                  color: Color(0xff1B1E23),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: SizedBox(
-                          width: (screen_width - 48) / 2,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        FoundersMessageRoute()),
-                              );
-                            },
-                            child: Text(
-                              "Founder's message",
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 10)),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffFDFDFD),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      SizedBox(
-                        width: (screen_width - 48) / 2,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        PrincipalsDeskRoute()),
-                              );
-                            },
-                            child: Text(
-                              "Principal's Desk",
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: Colors.black, fontSize: 10)),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffFDFDFD),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: 20,
                   width: screen_width,
@@ -311,6 +254,127 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                     decoration: const BoxDecoration(color: Color(0xff1B1E23)),
                   ),
                 ),
+
+                VisionMissionWidget(
+                  vision: widget.vision,
+                  mission: widget.mission,
+                ),
+
+                SizedBox(
+                  height: 20,
+                  width: screen_width,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(color: Color(0xff1B1E23)),
+                  ),
+                ),
+
+                widget.hasDepartments
+                    ? Column(
+                        children: [
+                          Container(
+                            color: Color(0xff1B1E23),
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                'Departments',
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                            width: screen_width,
+                            child: const DecoratedBox(
+                              decoration:
+                                  const BoxDecoration(color: Color(0xff1B1E23)),
+                            ),
+                          ),
+                          DepartmentCard(),
+                        ],
+                      )
+                    : SizedBox(),
+
+                // Container(
+                //   color: Color(0xff1B1E23),
+                //   child: Row(
+                //     children: [
+                //       Padding(
+                //         padding: const EdgeInsets.only(left: 20),
+                //         child: SizedBox(
+                //           width: (screen_width - 48) / 2,
+                //           child: ElevatedButton(
+                //             onPressed: () {
+                //               Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                     builder: (context) =>
+                //                         FoundersMessageRoute()),
+                //               );
+                //             },
+                //             child: Text(
+                //               "Founder's message",
+                //               style: GoogleFonts.poppins(
+                //                   textStyle: TextStyle(
+                //                       color: Colors.black, fontSize: 10)),
+                //             ),
+                //             style: ElevatedButton.styleFrom(
+                //               backgroundColor: Color(0xffFDFDFD),
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(16)),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       SizedBox(width: 8),
+                //       SizedBox(
+                //         width: (screen_width - 48) / 2,
+                //         child: ElevatedButton(
+                //             onPressed: () {
+                //               Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                     builder: (context) =>
+                //                         PrincipalsDeskRoute()),
+                //               );
+                //             },
+                //             child: Text(
+                //               "Principal's Desk",
+                //               style: GoogleFonts.poppins(
+                //                   textStyle: TextStyle(
+                //                       color: Colors.black, fontSize: 10)),
+                //             ),
+                //             style: ElevatedButton.styleFrom(
+                //               backgroundColor: Color(0xffFDFDFD),
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(16)),
+                //             )),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                SizedBox(
+                  height: 20,
+                  width: screen_width,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(color: Color(0xff1B1E23)),
+                  ),
+                ),
+
+                PrincipalDesk(),
+
+                SizedBox(
+                  height: 20,
+                  width: screen_width,
+                  child: const DecoratedBox(
+                    decoration: const BoxDecoration(color: Color(0xff1B1E23)),
+                  ),
+                ),
+
                 Container(
                   color: Color(0xff1B1E23),
                   alignment: Alignment.centerLeft,
@@ -320,7 +384,7 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                       'Top Recruiters',
                       style: GoogleFonts.poppins(
                           textStyle:
-                              TextStyle(fontSize: 14, color: Colors.white)),
+                              TextStyle(fontSize: 16, color: Colors.white)),
                     ),
                   ),
                 ),

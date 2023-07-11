@@ -19,7 +19,6 @@ class _YearButtonState extends State<YearButton> {
         alignment: Alignment.center,
         margin: EdgeInsets.fromLTRB(10, 18, 10, 18),
         width: 60,
-        height: 0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(

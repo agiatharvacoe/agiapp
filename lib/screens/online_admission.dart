@@ -10,8 +10,10 @@ class OnlineAdmission extends StatefulWidget {
 class _OnlineAdmissionState extends State<OnlineAdmission> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("OnlineAdmission"),
+    return Scaffold(
+      body: Center(
+        child: Text("OnlineAdmission"),
+      ),
     );
   }
 }
