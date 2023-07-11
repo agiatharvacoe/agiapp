@@ -1,5 +1,6 @@
 import 'package:agi_app/components/departmentCard.dart';
 import 'package:agi_app/components/notices.dart';
+import 'package:agi_app/components/banner.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -179,6 +180,12 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                   height: 100,
                   child: Notices(),
                 ),
+
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: DeptBanner(),
+                ),
+
                 SizedBox(
                   height: 20,
                   width: screen_width,
