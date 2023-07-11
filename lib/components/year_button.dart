@@ -1,8 +1,16 @@
+import 'package:agi_app/common/colors.dart';
+import 'package:agi_app/screens/class_year.dart';
 import 'package:flutter/material.dart';
 
 class YearButton extends StatefulWidget {
   final year;
-  const YearButton({super.key, required String this.year});
+  final department;
+  final college;
+  const YearButton(
+      {super.key,
+      required String this.year,
+      required String this.department,
+      required this.college});
 
   @override
   State<YearButton> createState() => _YearButtonState();
@@ -13,7 +21,16 @@ class _YearButtonState extends State<YearButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        print(widget.college);
         print(widget.year);
+        print(widget.department);
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => YearScreen(
+            college: widget.college,
+            year: widget.year,
+            department: widget.department,
+          ),
+        ));
       },
       child: Container(
         alignment: Alignment.center,
@@ -22,13 +39,13 @@ class _YearButtonState extends State<YearButton> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: Colors.red,
+              color: lightOrange,
               width: 1,
             )),
         child: Text(
           widget.year,
           style: const TextStyle(
-            color: Color.fromARGB(255, 252, 87, 59),
+            color: orange,
             fontSize: 15,
           ),
         ),

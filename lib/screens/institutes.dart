@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../common/colors.dart';
+import '../components/year_widget.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -54,6 +55,7 @@ class InstitutesWidget extends StatefulWidget {
   String admissionUrl;
   String vision;
   String mission;
+  String college;
   bool hasDepartments;
 
   InstitutesWidget({
@@ -66,6 +68,7 @@ class InstitutesWidget extends StatefulWidget {
     required bool this.hasDepartments,
     required String this.vision,
     required String this.mission,
+    required String this.college,
   });
 
   @override
@@ -294,10 +297,27 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                                   const BoxDecoration(color: Color(0xff1B1E23)),
                             ),
                           ),
-                          DepartmentCard(),
+                          DepartmentCard(college: widget.college),
                         ],
                       )
-                    : SizedBox(),
+                    : Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Select Your Year',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500)),
+                            ),
+                            YearWidget(college: widget.college),
+                          ],
+                        ),
+                      ),
+                // : SizedBox(),
 
                 // Container(
                 //   color: Color(0xff1B1E23),

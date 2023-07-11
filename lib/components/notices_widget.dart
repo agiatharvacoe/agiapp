@@ -45,7 +45,7 @@ class _NoticesWidgetState extends State<NoticesWidget> {
               //   color: Colors.grey,
               // ),
               title: Text(
-                "Department notices",
+                "Department Notices",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                       fontSize: 15,
@@ -55,7 +55,7 @@ class _NoticesWidgetState extends State<NoticesWidget> {
                 ),
               ),
               subtitle: Text(
-                "Some short description about the notice",
+                "Tap for Notices",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                       fontSize: 10,

@@ -17,6 +17,7 @@ class CardItem {
   final String admissionUrl;
   final String vision;
   final String mission;
+  final String college;
   // final int id;I
 
   CardItem({
@@ -30,6 +31,7 @@ class CardItem {
     required this.admissionUrl,
     required this.vision,
     required this.mission,
+    required this.college,
   });
 }
 
@@ -72,6 +74,7 @@ class _CollegeCardState extends State<CollegeCard> {
             admissionUrl: item["admissionUrl"],
             vision: item["vision"],
             mission: item["mission"],
+            college: item["college"],
           ),
         )
         .toList();
@@ -197,6 +200,7 @@ class _CollegeCardState extends State<CollegeCard> {
                 hasDepartments: carouselList[i].hasDepartments,
                 vision: carouselList[i].vision,
                 mission: carouselList[i].mission,
+                college: carouselList[i].college,
               ),
             ),
           );

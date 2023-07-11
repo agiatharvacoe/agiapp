@@ -48,6 +48,7 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                         widget.mission,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 10,
+                        textAlign: TextAlign.justify,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 15,
@@ -97,6 +98,7 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                         widget.mission,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 10,
+                        textAlign: TextAlign.justify,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 15,

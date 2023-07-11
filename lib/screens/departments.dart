@@ -13,11 +13,15 @@ class DepartmentScreen extends StatefulWidget {
   final department;
   final hodImageUrl;
   final hodName;
+  final title;
+  final college;
   const DepartmentScreen({
     super.key,
     required this.department,
     required this.hodImageUrl,
     required this.hodName,
+    required this.title,
+    required this.college,
   });
 
   @override
@@ -37,7 +41,7 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
   fetchInstitutes() async {
     var years = await FirebaseFirestore.instance
         .collection('aceDepartments')
-        .doc("it")
+        .doc(widget.department)
         .collection("years")
         .get();
     mapColleges(years);
@@ -119,20 +123,25 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
             Container(
               width: double.infinity,
               child: Text(
-                widget.department,
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                widget.title,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w600, color: orange),
+                ),
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               width: double.infinity,
-              child: const Text(
+              child: Text(
                 "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Etiam eu turpis molestie, dictum est sit amet",
                 textAlign: TextAlign.justify,
-                style: TextStyle(
-                    color: Color.fromARGB(255, 123, 124, 126), fontSize: 17),
+                style: GoogleFonts.poppins(
+                  textStyle:
+                      TextStyle(fontSize: 15, color: departmentDescColor),
+                ),
               ),
             ),
             SizedBox(
@@ -146,23 +155,12 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Top Recruiters',
+                      'Select Your Year',
                       style: GoogleFonts.poppins(
                           textStyle:
                               TextStyle(fontSize: 16, color: Colors.white)),
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.fromLTRB(30, 20, 10, 10),
-                  //   // child: Row(
-                  //   //   children: [
-                  //       // yearSelect("1st"),
-                  //       // yearSelect("2nd"),
-                  //       // yearSelect("3rd"),
-                  //       // yearSelect("4th")
-                  //     // ],
-                  //   ),
-                  // )
                 ],
               ),
             ),
@@ -180,7 +178,10 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
                   // physics: ClampingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return YearButton(year: years[index].year
+                    return YearButton(
+                        year: years[index].year,
+                        department: years[index].department,
+                        college: widget.college
                         // onClicked: () {
                         //   Navigator.push(
                         //     context,
@@ -203,7 +204,8 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
               child: Text(
                 "HOD Desk",
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(fontSize: 16, color: Colors.white)),
+                  textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ),
             ),
             SizedBox(
