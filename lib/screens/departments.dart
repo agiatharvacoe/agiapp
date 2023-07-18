@@ -112,9 +112,10 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         child: Column(
           children: [
             Container(
+              height: 150,
               // margin: const EdgeInsets.only(top: 50),
               child: Image.network(
-                'https://atharvacoe.ac.in/wp-content/uploads/slider_innoivation.jpg',
+                'https://firebasestorage.googleapis.com/v0/b/atharvaagi.appspot.com/o/collegesLogo%2Fcardcard.png?alt=media&token=ee037e28-7dbe-4120-b3a3-d8079709a84a',
               ),
             ),
             SizedBox(
