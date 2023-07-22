@@ -36,7 +36,7 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                       "Our Mission",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w600,
                             color: orange),
@@ -47,11 +47,11 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                       child: Text(
                         widget.mission,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 10,
+                        maxLines: 30,
                         textAlign: TextAlign.justify,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w400,
                               color: white),
@@ -86,7 +86,7 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                       "Our Vision",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w600,
                             color: orange),
@@ -95,13 +95,13 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
                     SizedBox(
                       width: 220,
                       child: Text(
-                        widget.mission,
+                        widget.vision,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 10,
+                        maxLines: 30,
                         textAlign: TextAlign.justify,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontFamily: "Poppins",
                               fontWeight: FontWeight.w400,
                               color: white),

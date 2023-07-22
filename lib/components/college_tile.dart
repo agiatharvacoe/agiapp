@@ -14,12 +14,12 @@ class Colleges extends StatelessWidget {
       // height: 100,
       margin: const EdgeInsets.only(right: 20),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        // borderRadius: BorderRadius.circular(16),
         child: Container(
-          padding: EdgeInsets.all(10),
-          color: bg,
-          width: 150,
-          height: 150,
+          // padding: EdgeInsets.all(10),
+          color: secondBackgroundColor,
+          width: 160,
+          // height: 155,
           child: GestureDetector(
             onTap: onClicked,
             child: CachedNetworkImage(

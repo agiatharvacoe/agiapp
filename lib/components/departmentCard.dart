@@ -12,6 +12,9 @@ class DepartmentCardModel {
   final String hodImageUrl;
   final String hodName;
   final String college;
+  final String desc;
+  final String hodDesc;
+  final String banner;
 
   const DepartmentCardModel({
     required this.name,
@@ -20,6 +23,9 @@ class DepartmentCardModel {
     required this.hodImageUrl,
     required this.hodName,
     required this.college,
+    required this.desc,
+    required this.hodDesc,
+    required this.banner,
   });
 }
 
@@ -57,6 +63,9 @@ class _DepartmentCardState extends State<DepartmentCard> {
               department: item["department"],
               hodImageUrl: item["hodImageUrl"],
               hodName: item["hodName"],
+              desc: item["desc"],
+              hodDesc: item["hodDesc"],
+              banner: item["banner"],
               college: widget.college
               // id: int.parse(item["subtitle"]),
               // urlImage: item["urlImage"],
@@ -99,6 +108,9 @@ class _DepartmentCardState extends State<DepartmentCard> {
                                 hodName: departments[index].hodName,
                                 department: departments[index].department,
                                 college: departments[index].college,
+                                desc: departments[index].desc,
+                                hodDesc: departments[index].hodDesc,
+                                banner: departments[index].banner,
                               ),
                             ),
                           );

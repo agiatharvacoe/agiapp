@@ -2,6 +2,8 @@ import 'package:agi_app/components/departmentDrawer.dart';
 import 'package:agi_app/components/notices_widget.dart';
 import 'package:agi_app/components/year_button.dart';
 import 'package:agi_app/model/yearModel.dart';
+import 'package:agi_app/screens/notice_board.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +17,9 @@ class DepartmentScreen extends StatefulWidget {
   final hodName;
   final title;
   final college;
+  final desc;
+  final hodDesc;
+  final banner;
   const DepartmentScreen({
     super.key,
     required this.department,
@@ -22,6 +27,9 @@ class DepartmentScreen extends StatefulWidget {
     required this.hodName,
     required this.title,
     required this.college,
+    required this.desc,
+    required this.hodDesc,
+    required this.banner,
   });
 
   @override
@@ -107,118 +115,140 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
         // ),
         backgroundColor: secondBackgroundColor,
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 25),
-        child: Column(
-          children: [
-            Container(
-              height: 150,
-              // margin: const EdgeInsets.only(top: 50),
-              child: Image.network(
-                'https://firebasestorage.googleapis.com/v0/b/atharvaagi.appspot.com/o/collegesLogo%2Fcardcard.png?alt=media&token=ee037e28-7dbe-4120-b3a3-d8079709a84a',
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: double.infinity,
-              child: Text(
-                widget.title,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w600, color: orange),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: double.infinity,
-              child: Text(
-                "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Etiam eu turpis molestie, dictum est sit amet",
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.poppins(
-                  textStyle:
-                      TextStyle(fontSize: 15, color: departmentDescColor),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            NoticesWidget(),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Select Your Year',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(fontSize: 16, color: Colors.white)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 100,
-              child: Container(
-                // margin: EdgeInsets.only(
-                //   left: 5,
-                // ),
-                // height: 150,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            children: [
+              SizedBox(
                 width: double.infinity,
-                child: ListView.builder(
-                  itemCount: years.length,
-                  shrinkWrap: true,
-                  // physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return YearButton(
-                        year: years[index].year,
-                        department: years[index].department,
-                        college: widget.college
-                        // onClicked: () {
-                        //   Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => DepartmentScreen(
-                        //           department: departments[index].name,
-                        //           hodImageUrl: departments[index].hodImageUrl,
-                        //           hodName: departments[index].hodName),
-                        //     ),
-                        //   );
-                        // }
-                        // selectedItem(context, clgList[index].id),
-                        );
-                  },
+                // height: 512,
+                // margin: const EdgeInsets.only(top: 50),
+                child: CachedNetworkImage(
+                  imageUrl: widget.banner,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "HOD Desk",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(fontSize: 16, color: Colors.white),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  widget.title,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: orange),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            HodCard(
-              imagePath: widget.hodImageUrl,
-              description:
-                  "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-              title: widget.hodName,
-            ),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  widget.desc,
+                  textAlign: TextAlign.justify,
+                  style: GoogleFonts.poppins(
+                    textStyle:
+                        TextStyle(fontSize: 15, color: departmentDescColor),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => NoticeScreen(
+                      department: widget.department,
+                      college: widget.college,
+                    ),
+                  ));
+                },
+                child: NoticesWidget(
+                  notice: "Department's",
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Select Your Year',
+                        style: GoogleFonts.poppins(
+                            textStyle:
+                                TextStyle(fontSize: 16, color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 100,
+                child: Container(
+                  // margin: EdgeInsets.only(
+                  //   left: 5,
+                  // ),
+                  // height: 150,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    itemCount: years.length,
+                    shrinkWrap: true,
+                    // physics: ClampingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return YearButton(
+                          year: years[index].year,
+                          department: years[index].department,
+                          college: widget.college
+                          // onClicked: () {
+                          //   Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (context) => DepartmentScreen(
+                          //           department: departments[index].name,
+                          //           hodImageUrl: departments[index].hodImageUrl,
+                          //           hodName: departments[index].hodName),
+                          //     ),
+                          //   );
+                          // }
+                          // selectedItem(context, clgList[index].id),
+                          );
+                    },
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "HOD Details",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              HodCard(
+                imagePath: widget.hodImageUrl,
+                description: widget.hodDesc,
+                title: widget.hodName,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );

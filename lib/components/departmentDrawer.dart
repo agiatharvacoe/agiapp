@@ -1,10 +1,13 @@
 import 'package:agi_app/common/colors.dart';
 import 'package:agi_app/components/pdfviewer.dart';
+import 'package:agi_app/screens/advisory_committee.dart';
 import 'package:agi_app/screens/atharva_payment.dart';
+import 'package:agi_app/screens/faculty.dart';
 import 'package:agi_app/screens/notice_board.dart';
 import 'package:agi_app/screens/online_admission.dart';
 import 'package:agi_app/screens/student_results.dart';
 import 'package:agi_app/screens/virtual_classroom.dart';
+import 'package:agi_app/screens/vision_mission.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,21 +46,27 @@ class DepartmentDrawerWidget extends StatelessWidget {
             ],
           ),
           BuildMenuItem(
-            title: "Faculty",
-            onClicked: () => selectedItem(context, 1),
-          ),
+              title: "Faculty",
+              onClicked: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => FacultyScreen(dept: department),
+                ));
+              }),
           BuildMenuItem(
-            title: "Vision & Mission",
-            onClicked: () => selectedItem(context, 2),
-          ),
+              title: "Advisory Committee",
+              onClicked: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      AdvisoryCommitteeScreen(dept: department),
+                ));
+              }),
           BuildMenuItem(
-            title: "E-Maxzine",
-            onClicked: () => selectedItem(context, 3),
-          ),
-          BuildMenuItem(
-            title: "Advisory Committee",
-            onClicked: () => selectedItem(context, 4),
-          ),
+              title: "Vision & Mission",
+              onClicked: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => VisionMissionScreen(dept: department),
+                ));
+              }),
         ],
       ),
     );

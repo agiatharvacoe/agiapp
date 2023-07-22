@@ -7,6 +7,7 @@ import 'package:agi_app/screens/virtual_classroom.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'Pages/virtualClassrooms.dart';
 // import 'Pages/noticeBoard.dart';
 // import 'Pages/onlineAddmission.dart';
@@ -18,6 +19,9 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Uri _url = Uri.parse(
+        'https://eazypay.icicibank.com/eazypayLink?P1=vwdONifYnw2q0Wn1nJB9gA==1');
+
     return Drawer(
       backgroundColor: black,
       child: ListView(
@@ -41,18 +45,23 @@ class Navbar extends StatelessWidget {
               title: "Notice Board",
               onClicked: () => selectedItem(context, 1),
               path: "assets/images/noticeBoard.png"),
-          BuildMenuItem(
-              title: "Online Admission",
-              onClicked: () => selectedItem(context, 2),
-              path: "assets/images/admission.png"),
+          // BuildMenuItem(
+          //     title: "Online Admission",
+          //     onClicked: () => selectedItem(context, 2),
+          //     path: "assets/images/admission.png"),
           BuildMenuItem(
               title: "Atharva Payment",
-              onClicked: () => selectedItem(context, 3),
+              onClicked: () {
+                launchUrl(
+                  _url,
+                  mode: LaunchMode.inAppWebView,
+                );
+              },
               path: "assets/images/payment.png"),
-          BuildMenuItem(
-              title: "Student Result",
-              onClicked: () => selectedItem(context, 4),
-              path: "assets/images/result.png"),
+          // BuildMenuItem(
+          //     title: "Student Result",
+          //     onClicked: () => selectedItem(context, 4),
+          //     path: "assets/images/result.png"),
           BuildMenuItem(
               title: "Settings",
               onClicked: () => selectedItem(context, 4),
@@ -99,7 +108,10 @@ class Navbar extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const NoticeBoard(),
+          builder: (context) => const NoticeScreen(
+            college: "agi",
+            department: "null",
+          ),
         ));
         break;
       case 2:

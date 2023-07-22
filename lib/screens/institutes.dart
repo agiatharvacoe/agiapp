@@ -1,8 +1,10 @@
 import 'package:agi_app/components/departmentCard.dart';
 import 'package:agi_app/components/instituteDrawer.dart';
 import 'package:agi_app/components/notices_widget.dart';
+import 'package:agi_app/components/principalCard.dart';
 import 'package:agi_app/components/principalDesk.dart';
 import 'package:agi_app/components/vision_mission.dart';
+import 'package:agi_app/screens/notice_board.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -56,6 +58,9 @@ class InstitutesWidget extends StatefulWidget {
   String vision;
   String mission;
   String college;
+  String pname;
+  String pimage;
+  String pdesc;
   bool hasDepartments;
 
   InstitutesWidget({
@@ -69,6 +74,9 @@ class InstitutesWidget extends StatefulWidget {
     required String this.vision,
     required String this.mission,
     required String this.college,
+    required String this.pname,
+    required String this.pimage,
+    required String this.pdesc,
   });
 
   @override
@@ -88,7 +96,9 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
       backgroundColor: secondBackgroundColor,
       drawerEnableOpenDragGesture: false,
       endDrawer: InstituteDrawerWidget(
-          feesUrl: widget.feesUrl, admissionUrl: widget.admissionUrl),
+          college: widget.college,
+          feesUrl: widget.feesUrl,
+          admissionUrl: widget.admissionUrl),
       appBar: AppBar(
         leading: IconButton(
           icon: ImageIcon(AssetImage('assets/images/white_arr.png'),
@@ -229,6 +239,7 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Text(
                       widget.desc,
+                      textAlign: TextAlign.justify,
                       style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               fontSize: 12,
@@ -245,9 +256,19 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                   ),
                 ),
 
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  child: NoticesWidget(),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => NoticeScreen(
+                        college: widget.college,
+                        department: "null",
+                      ),
+                    ));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: NoticesWidget(notice: "Institute's"),
+                  ),
                 ),
 
                 SizedBox(
@@ -385,7 +406,11 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                   ),
                 ),
 
-                PrincipalDesk(),
+                PrincipalCard(
+                  title: widget.pname,
+                  imagePath: widget.pimage,
+                  description: widget.pdesc,
+                ),
 
                 SizedBox(
                   height: 20,

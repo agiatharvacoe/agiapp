@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NoticesWidget extends StatefulWidget {
-  const NoticesWidget({super.key});
+  final notice;
+  const NoticesWidget({super.key, required this.notice});
 
   @override
   State<NoticesWidget> createState() => _NoticesWidgetState();
@@ -45,7 +46,7 @@ class _NoticesWidgetState extends State<NoticesWidget> {
               //   color: Colors.grey,
               // ),
               title: Text(
-                "Department Notices",
+                widget.notice + " Notices",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                       fontSize: 15,

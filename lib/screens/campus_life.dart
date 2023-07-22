@@ -1,61 +1,47 @@
-import 'package:agi_app/model/noticeModel.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../common/colors.dart';
-import '../components/pdfviewer.dart';
+import '../model/campusLife.dart';
 
-class NoticeScreen extends StatefulWidget {
+class CampusLifeScreen extends StatefulWidget {
   final college;
-  final department;
-  const NoticeScreen(
-      {super.key, required this.college, required this.department});
+  const CampusLifeScreen({super.key, required this.college});
 
   @override
-  State<NoticeScreen> createState() => _NoticeScreenState();
+  State<CampusLifeScreen> createState() => _CampusLifeScreenState();
 }
 
-class _NoticeScreenState extends State<NoticeScreen> {
-  List<NoticeModel> notice = [];
+class _CampusLifeScreenState extends State<CampusLifeScreen> {
+  List<CampusLifeModel> data = [];
   bool isLoaded = false;
   int len = 0;
   @override
   void initState() {
     // TODO: implement initState
-    fetchnotice();
+    fetchData();
     super.initState();
   }
 
-  fetchnotice() async {
-    if (widget.department == "null") {
-      var notice = await FirebaseFirestore.instance
-          .collection('details')
-          .doc(widget.college)
-          .collection('notices')
-          .get();
-      mapnotice(notice);
-      print(notice);
-    } else {
-      var notice = await FirebaseFirestore.instance
-          .collection('details')
-          .doc(widget.college)
-          .collection('departments')
-          .doc(widget.department)
-          .collection('notices')
-          .get();
-      mapnotice(notice);
-      print(notice);
-    }
+  fetchData() async {
+    var data = await FirebaseFirestore.instance
+        .collection('details')
+        .doc(widget.college)
+        .collection('campuslife')
+        .get();
+    mapData(data);
+    print(data);
   }
 
-  mapnotice(QuerySnapshot<Map<String, dynamic>> records) {
+  mapData(QuerySnapshot<Map<String, dynamic>> records) {
     var _list = records.docs
         .map(
-          (item) => NoticeModel(
-            title: item["title"],
-            notice: item["notice"],
+          (item) => CampusLifeModel(
+            name: item["title"],
+            image: item["image"],
+            desc: item["desc"],
           ),
         )
         .toList();
@@ -63,7 +49,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
     print(_list.length);
     setState(() {
       isLoaded = true;
-      notice = _list;
+      data = _list;
       len = _list.length;
     });
   }
@@ -82,7 +68,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Notices",
+          "Campus Life",
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
                 fontSize: 14,
@@ -99,7 +85,7 @@ class _NoticeScreenState extends State<NoticeScreen> {
           height: MediaQuery.of(context).size.height + (len * 70),
           width: double.infinity,
           child: ListView.builder(
-              itemCount: notice.length,
+              itemCount: data.length,
               // shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               scrollDirection: Axis.vertical,
@@ -107,15 +93,6 @@ class _NoticeScreenState extends State<NoticeScreen> {
                 return Container(
                   margin: const EdgeInsets.all(5),
                   child: ListTile(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PDFViewerWidget(
-                              title: notice[index].title,
-                              url: notice[index].notice),
-                        ),
-                      );
-                    },
                     tileColor: backgroundColor,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 25),
@@ -127,14 +104,28 @@ class _NoticeScreenState extends State<NoticeScreen> {
                     //   child:
                     //       CachedNetworkImage(imageUrl: faculties[index].image),
                     // ),
+                    leading: SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Image.network(height: 50, data[index].image)),
                     title: Text(
-                      notice[index].title,
+                      data[index].name,
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             fontSize: 14,
                             color: black,
                             letterSpacing: 0.5,
                             fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    subtitle: Text(
+                      data[index].desc,
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            fontSize: 12,
+                            color: black,
+                            letterSpacing: 0.5,
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
                   ),

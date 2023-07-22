@@ -6,6 +6,7 @@ import 'package:agi_app/components/homeNotice.dart';
 import 'package:agi_app/firebase_options.dart';
 import 'package:agi_app/model/college.dart';
 import 'package:agi_app/screens/institutes.dart';
+import 'package:agi_app/screens/notice_board.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -153,7 +154,46 @@ class _HomeState extends State<Home> {
               //     ),
               //   ),
               // ),
-              HomeNoticeWidget(),
+              // HomeNoticeWidget(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const NoticeScreen(
+                      college: "agi",
+                      department: "null",
+                    ),
+                  ));
+                },
+                child: Card(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    leading: SizedBox(
+                      width: 60,
+                      child: CircleAvatar(
+                          backgroundColor: white,
+                          child: Image.asset(
+                            "assets/images/noticeBoard.png",
+                            height: 37,
+                          )),
+                    ),
+                    title: Text(
+                      "Important Notice",
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    subtitle: Text(
+                      "Tap to Open.",
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontSize: 11),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),

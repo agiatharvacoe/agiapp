@@ -1,14 +1,19 @@
 import 'package:agi_app/common/colors.dart';
 import 'package:agi_app/components/pdfviewer.dart';
 import 'package:agi_app/screens/atharva_payment.dart';
+import 'package:agi_app/screens/campus_life.dart';
+import 'package:agi_app/screens/committees.dart';
 import 'package:agi_app/screens/notice_board.dart';
 import 'package:agi_app/screens/online_admission.dart';
+import 'package:agi_app/screens/researchandinnovation.dart';
 import 'package:agi_app/screens/student_results.dart';
 import 'package:agi_app/screens/virtual_classroom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../screens/placements.dart';
 // import 'Pages/virtualClassrooms.dart';
 // import 'Pages/noticeBoard.dart';
 // import 'Pages/onlineAddmission.dart';
@@ -18,10 +23,12 @@ import 'package:google_fonts/google_fonts.dart';
 class InstituteDrawerWidget extends StatelessWidget {
   final feesUrl;
   final admissionUrl;
+  final college;
   const InstituteDrawerWidget(
       {Key? key,
       required String this.feesUrl,
-      required String this.admissionUrl})
+      required String this.admissionUrl,
+      required String this.college})
       : super(key: key);
 
   @override
@@ -56,19 +63,35 @@ class InstituteDrawerWidget extends StatelessWidget {
           ),
           BuildMenuItem(
             title: "Placement",
-            onClicked: () => selectedItem(context, 3),
+            onClicked: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PlacementScreen(college: college),
+              ));
+            },
           ),
           BuildMenuItem(
             title: "Committees",
-            onClicked: () => selectedItem(context, 4),
+            onClicked: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CommitteeScreen(college: college),
+              ));
+            },
           ),
           BuildMenuItem(
             title: "Campus Life",
-            onClicked: () => selectedItem(context, 5),
+            onClicked: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CampusLifeScreen(college: college),
+              ));
+            },
           ),
           BuildMenuItem(
             title: "Research and Innovation",
-            onClicked: () => selectedItem(context, 5),
+            onClicked: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => RNDScreen(college: college),
+              ));
+            },
           ),
         ],
       ),
