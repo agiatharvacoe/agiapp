@@ -47,8 +47,9 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
   }
 
   fetchInstitutes() async {
+    print(widget.department);
     var years = await FirebaseFirestore.instance
-        .collection('aceDepartments')
+        .collection(widget.college + 'Departments')
         .doc(widget.department)
         .collection("years")
         .get();
@@ -70,13 +71,16 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
       isLoaded = true;
       years = _list;
     });
+
+    print(_list.length);
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondBackgroundColor,
       drawerEnableOpenDragGesture: false,
-      endDrawer: DepartmentDrawerWidget(department: widget.department),
+      endDrawer: DepartmentDrawerWidget(
+          department: widget.department, college: widget.college),
       appBar: AppBar(
         leading: IconButton(
           icon: ImageIcon(AssetImage('assets/images/white_arr.png'),

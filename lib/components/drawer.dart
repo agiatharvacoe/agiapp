@@ -1,4 +1,5 @@
 import 'package:agi_app/common/colors.dart';
+import 'package:agi_app/screens/about_app.dart';
 import 'package:agi_app/screens/atharva_payment.dart';
 import 'package:agi_app/screens/notice_board.dart';
 import 'package:agi_app/screens/online_admission.dart';
@@ -24,49 +25,90 @@ class Navbar extends StatelessWidget {
 
     return Drawer(
       backgroundColor: black,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 10),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                  // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-                  icon: FaIcon(
-                    FontAwesomeIcons.xmark,
-                    color: white,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-            ],
-          ),
-          BuildMenuItem(
-              title: "Notice Board",
-              onClicked: () => selectedItem(context, 1),
-              path: "assets/images/noticeBoard.png"),
-          // BuildMenuItem(
-          //     title: "Online Admission",
-          //     onClicked: () => selectedItem(context, 2),
-          //     path: "assets/images/admission.png"),
-          BuildMenuItem(
-              title: "Atharva Payment",
-              onClicked: () {
-                launchUrl(
-                  _url,
-                  mode: LaunchMode.inAppWebView,
-                );
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 10),
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
+                        icon: FaIcon(
+                          FontAwesomeIcons.xmark,
+                          color: white,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                  ],
+                ),
+                BuildMenuItem(
+                    title: "Notice Board",
+                    onClicked: () => selectedItem(context, 1),
+                    path: "assets/images/noticeBoard.png"),
+                // BuildMenuItem(
+                //     title: "Online Admission",
+                //     onClicked: () => selectedItem(context, 2),
+                //     path: "assets/images/admission.png"),
+                BuildMenuItem(
+                    title: "Atharva Payment",
+                    onClicked: () {
+                      launchUrl(
+                        _url,
+                        mode: LaunchMode.inAppWebView,
+                      );
+                    },
+                    path: "assets/images/payment.png"),
+                // BuildMenuItem(
+                //     title: "Student Result",
+                //     onClicked: () => selectedItem(context, 4),
+                //     path: "assets/images/result.png"),
+                // BuildMenuItem(
+                //     title: "Settings",
+                //     // onClicked: () => selectedItem(context, 4),
+                //     path: "assets/images/result.png"),
+              ],
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const AboutApp(),
+                ));
               },
-              path: "assets/images/payment.png"),
-          // BuildMenuItem(
-          //     title: "Student Result",
-          //     onClicked: () => selectedItem(context, 4),
-          //     path: "assets/images/result.png"),
-          BuildMenuItem(
-              title: "Settings",
-              onClicked: () => selectedItem(context, 4),
-              path: "assets/images/result.png"),
-        ],
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    height: 0.5,
+                    width: double.infinity,
+                    color: opacWhite,
+                  ),
+                  Container(
+                    child: ListTile(
+                      leading: Text(
+                        "About App ",
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                            color: opacWhite),
+                      ),
+                      trailing: Text(
+                        "v1",
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(fontSize: 15),
+                            color: opacWhite),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -119,16 +161,11 @@ class Navbar extends StatelessWidget {
           builder: (context) => const OnlineAdmission(),
         ));
         break;
-      case 3:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const AtharvaPayment(),
-        ));
-        break;
-      case 4:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const StudentResults(),
-        ));
-        break;
+      // case 3:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => const AtharvaPayment(),
+      //   ));
+      //   break;
     }
   }
 }

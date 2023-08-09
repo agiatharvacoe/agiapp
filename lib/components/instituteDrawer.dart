@@ -85,14 +85,14 @@ class InstituteDrawerWidget extends StatelessWidget {
               ));
             },
           ),
-          BuildMenuItem(
-            title: "Research and Innovation",
-            onClicked: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => RNDScreen(college: college),
-              ));
-            },
-          ),
+          // BuildMenuItem(
+          //   title: "Research and Innovation",
+          //   onClicked: () {
+          //     Navigator.of(context).push(MaterialPageRoute(
+          //       builder: (context) => RNDScreen(college: college),
+          //     ));
+          //   },
+          // ),
         ],
       ),
     );

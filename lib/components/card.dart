@@ -21,6 +21,7 @@ class CardItem {
   final String principalName;
   final String principalDesc;
   final String principalImage;
+  final String departmentsPage;
   // final int id;I
 
   CardItem({
@@ -38,6 +39,7 @@ class CardItem {
     required this.principalName,
     required this.principalDesc,
     required this.principalImage,
+    required this.departmentsPage,
   });
 }
 
@@ -84,6 +86,7 @@ class _CollegeCardState extends State<CollegeCard> {
             principalName: item["principalName"],
             principalDesc: item["principalDesc"],
             principalImage: item["principalImage"],
+            departmentsPage: item["departmentsPage"],
           ),
         )
         .toList();
@@ -213,6 +216,7 @@ class _CollegeCardState extends State<CollegeCard> {
                 pname: carouselList[i].principalName,
                 pimage: carouselList[i].principalImage,
                 pdesc: carouselList[i].principalDesc,
+                departmentsPage: carouselList[i].departmentsPage,
               ),
             ),
           );

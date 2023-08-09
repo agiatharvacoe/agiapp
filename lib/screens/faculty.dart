@@ -8,7 +8,8 @@ import '../common/colors.dart';
 
 class FacultyScreen extends StatefulWidget {
   final dept;
-  const FacultyScreen({super.key, required this.dept});
+  final college;
+  const FacultyScreen({super.key, required this.dept, required this.college});
 
   @override
   State<FacultyScreen> createState() => _FacultyScreenState();
@@ -26,9 +27,10 @@ class _FacultyScreenState extends State<FacultyScreen> {
   }
 
   fetchFaculties() async {
+    print(widget.college + widget.dept);
     var faculties = await FirebaseFirestore.instance
         .collection('details')
-        .doc('ace')
+        .doc(widget.college)
         .collection('departments')
         .doc(widget.dept)
         .collection('faculties')

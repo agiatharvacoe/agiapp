@@ -5,6 +5,7 @@ const textColor = Color.fromRGBO(0, 0, 0, 1);
 const drawerColor = Color.fromRGBO(27, 30, 35, 1);
 const black = Colors.black;
 const white = Colors.white;
+const opacWhite = Color.fromARGB(124, 255, 255, 255);
 const secondBackgroundColor = Color(0xff1B1E23);
 const orange = Color.fromRGBO(252, 87, 59, 1);
 const lightOrange = Color.fromRGBO(252, 87, 59, 0.2);

@@ -7,7 +7,9 @@ import '../common/colors.dart';
 
 class VisionMissionScreen extends StatefulWidget {
   final dept;
-  const VisionMissionScreen({super.key, required this.dept});
+  final college;
+  const VisionMissionScreen(
+      {super.key, required this.dept, required this.college});
 
   @override
   State<VisionMissionScreen> createState() => _VisionMissionScreenState();
@@ -20,7 +22,7 @@ class _VisionMissionScreenState extends State<VisionMissionScreen> {
     final DocumentSnapshot<Map<String, dynamic>> snapshot =
         await FirebaseFirestore.instance
             .collection('details')
-            .doc('ace')
+            .doc(widget.college)
             .collection('departments')
             .doc(widget.dept)
             .get();
@@ -72,9 +74,12 @@ class _VisionMissionScreenState extends State<VisionMissionScreen> {
         ),
         body: SizedBox(
           child: isLoaded
-              ? VisionMissionWidget(
-                  mission: visionMission!["mission"],
-                  vision: visionMission!["vision"])
+              ? (((visionMission!["mission"] != "null") &&
+                      (visionMission!["vision"] != "null"))
+                  ? VisionMissionWidget(
+                      mission: visionMission!["mission"],
+                      vision: visionMission!["vision"])
+                  : SizedBox())
               : SizedBox(),
         ));
   }

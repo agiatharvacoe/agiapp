@@ -7,9 +7,11 @@ import 'package:agi_app/firebase_options.dart';
 import 'package:agi_app/model/college.dart';
 import 'package:agi_app/screens/institutes.dart';
 import 'package:agi_app/screens/notice_board.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'common/colors.dart';
 import 'common/strings.dart';
@@ -37,7 +39,17 @@ class MyApp extends StatelessWidget {
         // ),
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: AnimatedSplashScreen(
+        splash: Image.asset('assets/images/agi.png'),
+        backgroundColor: black,
+        nextScreen: const Home(),
+        splashIconSize: 250,
+        duration: 400,
+        centered: true,
+        splashTransition: SplashTransition.fadeTransition,
+        pageTransitionType: PageTransitionType.leftToRightWithFade,
+        animationDuration: const Duration(seconds: 2),
+      ),
     );
   }
 }

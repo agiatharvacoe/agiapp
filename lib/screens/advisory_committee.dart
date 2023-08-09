@@ -8,7 +8,9 @@ import '../model/advisoryCommitteeModel.dart';
 
 class AdvisoryCommitteeScreen extends StatefulWidget {
   final dept;
-  const AdvisoryCommitteeScreen({super.key, required this.dept});
+  final college;
+  const AdvisoryCommitteeScreen(
+      {super.key, required this.dept, required this.college});
 
   @override
   State<AdvisoryCommitteeScreen> createState() =>
@@ -29,7 +31,7 @@ class _AdvisoryCommitteeScreenState extends State<AdvisoryCommitteeScreen> {
   fetchAdCommittee() async {
     var committee = await FirebaseFirestore.instance
         .collection('details')
-        .doc('ace')
+        .doc(widget.college)
         .collection('departments')
         .doc(widget.dept)
         .collection('board')

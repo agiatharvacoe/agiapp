@@ -20,7 +20,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DepartmentDrawerWidget extends StatelessWidget {
   final department;
-  const DepartmentDrawerWidget({Key? key, required String this.department})
+  final college;
+  const DepartmentDrawerWidget(
+      {Key? key, required String this.department, required this.college})
       : super(key: key);
 
   @override
@@ -49,22 +51,24 @@ class DepartmentDrawerWidget extends StatelessWidget {
               title: "Faculty",
               onClicked: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => FacultyScreen(dept: department),
+                  builder: (context) =>
+                      FacultyScreen(dept: department, college: college),
                 ));
               }),
           BuildMenuItem(
               title: "Advisory Committee",
               onClicked: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      AdvisoryCommitteeScreen(dept: department),
+                  builder: (context) => AdvisoryCommitteeScreen(
+                      dept: department, college: college),
                 ));
               }),
           BuildMenuItem(
               title: "Vision & Mission",
               onClicked: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => VisionMissionScreen(dept: department),
+                  builder: (context) =>
+                      VisionMissionScreen(dept: department, college: college),
                 ));
               }),
         ],

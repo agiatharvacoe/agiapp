@@ -15,6 +15,7 @@ class DepartmentCardModel {
   final String desc;
   final String hodDesc;
   final String banner;
+  final int id;
 
   const DepartmentCardModel({
     required this.name,
@@ -26,12 +27,17 @@ class DepartmentCardModel {
     required this.desc,
     required this.hodDesc,
     required this.banner,
+    required this.id,
   });
 }
 
 class DepartmentCard extends StatefulWidget {
   final college;
-  const DepartmentCard({super.key, required String this.college});
+  final departmentsPage;
+  const DepartmentCard(
+      {super.key,
+      required String this.college,
+      required String this.departmentsPage});
 
   @override
   State<DepartmentCard> createState() => _DepartmentCardState();
@@ -48,8 +54,9 @@ class _DepartmentCardState extends State<DepartmentCard> {
   }
 
   fetchInstitutes() async {
-    var departments =
-        await FirebaseFirestore.instance.collection('aceDepartments').get();
+    var departments = await FirebaseFirestore.instance
+        .collection(widget.departmentsPage)
+        .get();
     mapColleges(departments);
     print(departments);
   }
@@ -58,21 +65,24 @@ class _DepartmentCardState extends State<DepartmentCard> {
     var _list = records.docs
         .map(
           (item) => DepartmentCardModel(
-              name: item["name"],
-              image: item["image"],
-              department: item["department"],
-              hodImageUrl: item["hodImageUrl"],
-              hodName: item["hodName"],
-              desc: item["desc"],
-              hodDesc: item["hodDesc"],
-              banner: item["banner"],
-              college: widget.college
-              // id: int.parse(item["subtitle"]),
-              // urlImage: item["urlImage"],
-              // logo: item["logo"],
-              ),
+            name: item["name"],
+            image: item["image"],
+            department: item["department"],
+            hodImageUrl: item["hodImageUrl"],
+            hodName: item["hodName"],
+            desc: item["desc"],
+            hodDesc: item["hodDesc"],
+            banner: item["banner"],
+            college: widget.college,
+            id: int.parse(item["id"]),
+            // id: int.parse(item["subtitle"]),
+            // urlImage: item["urlImage"],
+            // logo: item["logo"],
+          ),
         )
         .toList();
+    // Sort the list based on the 'id' field.
+    _list.sort((a, b) => a.id.compareTo(b.id));
     print("Lenghth years");
     print(_list.length);
     setState(() {

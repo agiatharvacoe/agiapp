@@ -38,7 +38,7 @@ class _YearWidgetState extends State<YearWidget> {
   fetchYears() async {
     var departments = await FirebaseFirestore.instance
         .collection('colleges')
-        .doc('aims')
+        .doc(widget.college)
         .collection("years")
         .get();
     mapColleges(departments);

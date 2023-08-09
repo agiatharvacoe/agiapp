@@ -61,6 +61,7 @@ class InstitutesWidget extends StatefulWidget {
   String pname;
   String pimage;
   String pdesc;
+  String departmentsPage;
   bool hasDepartments;
 
   InstitutesWidget({
@@ -77,6 +78,7 @@ class InstitutesWidget extends StatefulWidget {
     required String this.pname,
     required String this.pimage,
     required String this.pdesc,
+    required String this.departmentsPage,
   });
 
   @override
@@ -279,10 +281,12 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                   ),
                 ),
 
-                VisionMissionWidget(
-                  vision: widget.vision,
-                  mission: widget.mission,
-                ),
+                ((widget.vision != "null" && widget.mission != "null")
+                    ? VisionMissionWidget(
+                        vision: widget.vision,
+                        mission: widget.mission,
+                      )
+                    : SizedBox()),
 
                 SizedBox(
                   height: 20,
@@ -318,7 +322,9 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                                   const BoxDecoration(color: Color(0xff1B1E23)),
                             ),
                           ),
-                          DepartmentCard(college: widget.college),
+                          DepartmentCard(
+                              college: widget.college,
+                              departmentsPage: widget.departmentsPage),
                         ],
                       )
                     : Container(
@@ -334,7 +340,9 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500)),
                             ),
-                            YearWidget(college: widget.college),
+                            YearWidget(
+                              college: widget.college,
+                            ),
                           ],
                         ),
                       ),
@@ -420,80 +428,80 @@ class _InstitutesWidgetState extends State<InstitutesWidget> {
                   ),
                 ),
 
-                Container(
-                  color: Color(0xff1B1E23),
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Top Recruiters',
-                      style: GoogleFonts.poppins(
-                          textStyle:
-                              TextStyle(fontSize: 16, color: Colors.white)),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                  width: screen_width,
-                  child: const DecoratedBox(
-                    decoration: const BoxDecoration(color: Color(0xff1B1E23)),
-                  ),
-                ),
-                Container(
-                  height: 125,
-                  color: Color(0xffD9D9D9),
-                  child: Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 34, top: 17),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/amazon_logo.png',
-                            width: 109,
-                            height: 32,
-                          ),
-                          SizedBox(
-                            width: 32,
-                          ),
-                          Image.asset(
-                            'assets/images/capgemini_logo.png',
-                            width: 135,
-                            height: 32,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 34, top: 10),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/accenture_logo.png',
-                            width: 112,
-                            height: 31,
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                            'assets/images/infosys_logo.png',
-                            width: 75,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                            'assets/images/wipro_logo.png',
-                            width: 70,
-                            height: 60,
-                          ),
-                        ],
-                      ),
-                    )
-                  ]),
-                ),
+                // Container(
+                //   color: Color(0xff1B1E23),
+                //   alignment: Alignment.centerLeft,
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(left: 20),
+                //     child: Text(
+                //       'Top Recruiters',
+                //       style: GoogleFonts.poppins(
+                //           textStyle:
+                //               TextStyle(fontSize: 16, color: Colors.white)),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 20,
+                //   width: screen_width,
+                //   child: const DecoratedBox(
+                //     decoration: const BoxDecoration(color: Color(0xff1B1E23)),
+                //   ),
+                // ),
+                // Container(
+                //   height: 125,
+                //   color: Color(0xffD9D9D9),
+                //   child: Column(children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 34, top: 17),
+                //       child: Row(
+                //         children: [
+                //           Image.asset(
+                //             'assets/images/amazon_logo.png',
+                //             width: 109,
+                //             height: 32,
+                //           ),
+                //           SizedBox(
+                //             width: 32,
+                //           ),
+                //           Image.asset(
+                //             'assets/images/capgemini_logo.png',
+                //             width: 135,
+                //             height: 32,
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 34, top: 10),
+                //       child: Row(
+                //         children: [
+                //           Image.asset(
+                //             'assets/images/accenture_logo.png',
+                //             width: 112,
+                //             height: 31,
+                //           ),
+                //           SizedBox(
+                //             width: 30,
+                //           ),
+                //           Image.asset(
+                //             'assets/images/infosys_logo.png',
+                //             width: 75,
+                //             height: 30,
+                //           ),
+                //           SizedBox(
+                //             width: 30,
+                //           ),
+                //           Image.asset(
+                //             'assets/images/wipro_logo.png',
+                //             width: 70,
+                //             height: 60,
+                //           ),
+                //         ],
+                //       ),
+                //     )
+                //   ]),
+                // ),
                 SizedBox(
                   height: 40,
                   width: screen_width,

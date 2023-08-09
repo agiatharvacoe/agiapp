@@ -39,10 +39,10 @@ class _CommitteeScreenState extends State<CommitteeScreen> {
     var _list = records.docs
         .map(
           (item) => CommitteeModel(
-            name: item["name"],
-            image: item["image"],
-            desc: item["desc"],
-          ),
+              name: item["name"],
+              image: item["image"],
+              desc: item["desc"],
+              studentCoordinator: item["studentCoordinator"]),
         )
         .toList();
     print("Lenghth faculty");
@@ -82,7 +82,7 @@ class _CommitteeScreenState extends State<CommitteeScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 15, right: 15),
-          height: MediaQuery.of(context).size.height + (len * 70),
+          height: MediaQuery.of(context).size.height + (len * 250),
           width: double.infinity,
           child: ListView.builder(
               itemCount: committee.length,
@@ -109,15 +109,30 @@ class _CommitteeScreenState extends State<CommitteeScreen> {
                         width: 100,
                         child:
                             Image.network(height: 50, committee[index].image)),
-                    title: Text(
-                      committee[index].name,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            fontSize: 14,
-                            color: black,
-                            letterSpacing: 0.5,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          committee[index].name,
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 14,
+                                color: black,
+                                letterSpacing: 0.5,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Text(
+                          committee[index].studentCoordinator,
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                fontSize: 12,
+                                color: black,
+                                letterSpacing: 0.5,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
                     ),
                     subtitle: Text(
                       committee[index].desc,
