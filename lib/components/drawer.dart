@@ -1,6 +1,7 @@
 import 'package:agi_app/common/colors.dart';
 import 'package:agi_app/screens/about_app.dart';
 import 'package:agi_app/screens/atharva_payment.dart';
+import 'package:agi_app/screens/contact_us.dart';
 import 'package:agi_app/screens/notice_board.dart';
 import 'package:agi_app/screens/online_admission.dart';
 import 'package:agi_app/screens/student_results.dart';
@@ -51,6 +52,7 @@ class Navbar extends StatelessWidget {
                     title: "Notice Board",
                     onClicked: () => selectedItem(context, 1),
                     path: "assets/images/noticeBoard.png"),
+
                 // BuildMenuItem(
                 //     title: "Online Admission",
                 //     onClicked: () => selectedItem(context, 2),
@@ -64,6 +66,10 @@ class Navbar extends StatelessWidget {
                       );
                     },
                     path: "assets/images/payment.png"),
+                BuildMenuItem(
+                    title: "Contact",
+                    onClicked: () => selectedItem(context, 2),
+                    path: "assets/images/contact.png"),
                 // BuildMenuItem(
                 //     title: "Student Result",
                 //     onClicked: () => selectedItem(context, 4),
@@ -82,12 +88,12 @@ class Navbar extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                    height: 0.5,
-                    width: double.infinity,
-                    color: opacWhite,
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  //   height: 0.5,
+                  //   width: double.infinity,
+                  //   color: opacWhite,
+                  // ),
                   Container(
                     child: ListTile(
                       leading: Text(
@@ -97,7 +103,7 @@ class Navbar extends StatelessWidget {
                             color: opacWhite),
                       ),
                       trailing: Text(
-                        "v1",
+                        "v1.0",
                         style: GoogleFonts.poppins(
                             textStyle: TextStyle(fontSize: 15),
                             color: opacWhite),
@@ -158,7 +164,7 @@ class Navbar extends StatelessWidget {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const OnlineAdmission(),
+          builder: (context) => const ContactUs(),
         ));
         break;
       // case 3:

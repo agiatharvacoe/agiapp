@@ -46,9 +46,11 @@ class _FacultyScreenState extends State<FacultyScreen> {
             name: item["name"] ?? "a",
             image: item["image"] ?? "a",
             desc: item["desc"] ?? "a",
+            id: int.parse(item["id"]),
           ),
         )
         .toList();
+    _list.sort((a, b) => a.id.compareTo(b.id));
     print("Lenghth faculty");
     // print(_list[1]);
     setState(() {

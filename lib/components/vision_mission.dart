@@ -69,9 +69,9 @@ class _VisionMissionWidgetState extends State<VisionMissionWidget> {
         ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 30),
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
                 "assets/images/mission.png",

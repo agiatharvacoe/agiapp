@@ -38,7 +38,7 @@ class _FoundersDeskState extends State<FoundersDesk> {
                     padding: const EdgeInsets.only(
                         left: 6, right: 5, top: 4, bottom: 4),
                     child: Image.asset(
-                      'assets/images/sunil_rane.png',
+                      'assets/images/sunil_rane.jpg',
                       width: 162,
                       height: 132,
                     ),

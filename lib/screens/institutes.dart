@@ -582,7 +582,7 @@ class FoundersMessageRoute extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 10, right: 11, top: 8, bottom: 9),
                     child: Image.asset(
-                      'assets/images/sunil_rane.png',
+                      'assets/images/sunil_rane.jpg',
                       width: 329,
                       height: 269,
                     ),

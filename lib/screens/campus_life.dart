@@ -82,7 +82,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 15, right: 15),
-          height: MediaQuery.of(context).size.height + (len * 70),
+          height: MediaQuery.of(context).size.height + (len * 250),
           width: double.infinity,
           child: ListView.builder(
               itemCount: data.length,

@@ -9,9 +9,12 @@ import 'package:agi_app/screens/institutes.dart';
 import 'package:agi_app/screens/notice_board.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'common/colors.dart';
 import 'common/strings.dart';
@@ -20,10 +23,23 @@ import 'components/carouselSlider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+  // final fcmToken = await FirebaseMessaging.instance.getToken();
+  // print(fcmToken);
   runApp(const MyApp());
+}
+
+Future<void> backgroundHandler(RemoteMessage message) async {
+  print("Received Message : ");
+  print(message.notification!.title);
 }
 
 class MyApp extends StatelessWidget {
@@ -33,14 +49,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: AppBarText,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // textTheme: GoogleFonts.poppinsTextTheme(
-        //   Theme.of(context).textTheme,
-        // ),
-        primarySwatch: Colors.blue,
-      ),
       home: AnimatedSplashScreen(
-        splash: Image.asset('assets/images/agi.png'),
+        splash: Image.asset('assets/images/splashlogo.png'),
         backgroundColor: black,
         nextScreen: const Home(),
         splashIconSize: 250,
@@ -63,6 +73,26 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseMessaging.onMessage.listen((event) {
+      print("Received Message : ");
+      print(event.notification!.title);
+    });
+
+    FirebaseMessaging.instance.getInitialMessage().then((event) {
+      print("Received Message : ");
+      print(event);
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      print("Received Message : ");
+      print(event.notification!.title);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

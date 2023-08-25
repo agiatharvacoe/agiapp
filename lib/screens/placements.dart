@@ -83,7 +83,7 @@ class _PlacementScreenState extends State<PlacementScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 15, right: 15),
-          height: MediaQuery.of(context).size.height + (len * 70),
+          height: MediaQuery.of(context).size.height + (len * 150),
           width: double.infinity,
           child: ListView.builder(
               itemCount: placement.length,
